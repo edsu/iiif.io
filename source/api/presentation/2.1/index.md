@@ -22,7 +22,6 @@ _Copyright © 2012-2014 Editors and contributors. Published by the IIIF under th
 
 **Editors**
 
-  * Benjamin Albritton, _Stanford University_
   * Michael Appleby, _Yale University_
   * Robert Sanderson, _Stanford University_
   * Jon Stroop, _Princeton University_
@@ -244,10 +243,10 @@ viewingHint
     Other values _MAY_ be given, and if they are, they _MUST_ be URIs. 
 
 viewingDate
-:    A date that the client can use when presenting the resource to the user in a time-based user interface, such as a calendar or timeline.  The value _MUST_ be an xsd:dateTime literal, of the form "YYYY-MM-DDThh:mm:ssZ".  If the exact time is not known, then 00:00:00 _SHOULD_ be used.  
+:    A date that the client can use when presenting the resource to the user in a time-based user interface, such as a calendar or timeline.  The value _MUST_ be an xsd:dateTime literal in UTC, expressed in the form "YYYY-MM-DDThh:mm:ssZ".  If the exact time is not known, then 00:00:00 _SHOULD_ be used. Similarly, the month or day _SHOULD_ be 01 if not known.  There _MUST_ be at most one viewingDate associated with any given resource.  More descriptive date ranges, intended for display directly to the user, _SHOULD_ be included in the `metadata` property for human.
     Usage:
     {: .usage}
-    * Any resource _MAY_ have a viewing date associated with it.
+    * Any resource _MAY_ have a single viewing date associated with it.
 
 
 ####  4.4. Linking Properties
