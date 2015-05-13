@@ -245,7 +245,6 @@ viewingHint
 
 viewingDate
 :    A date that the client can use when presenting the resource to the user in a time-based user interface, such as a calendar or timeline.  The value _MUST_ be an xsd:dateTime literal, of the form "YYYY-MM-DDThh:mm:ssZ".  If the exact time is not known, then 00:00:00 _SHOULD_ be used.  
-
     Usage:
     {: .usage}
     * Any resource _MAY_ have a viewing date associated with it.
@@ -1024,6 +1023,24 @@ Unlike painting Annotations, comments or annotations with other motivations, SHO
 }
 {% endhighlight %}
 
+Other resources may also have comments made about them, including Manifests (comments about the object), Sequences (comments about that particular ordering), Ranges (comments about the section), Annotations (replies to the targeted Annotation), and so forth.  In order for the client to discover these Annotations, they can be included in an AnnotationList referenced from the target resource.  This is accomplished by reusing the `otherContent` pattern.  Any resource may have a list of annotations associated with it in this way.
+
+{% highlight json %}
+{
+  "@context":"http://iiif.io/api/presentation/2/context.json",
+  "@id":"http://www.example.org/iiif/book1/manifest",
+  "@type":"sc:Manifest",
+  // ...
+
+  "otherContent": [
+    {
+      "@id":"http://www.example.org/iiif/book1/list/book1",
+      "@type": "sc:AnnotationList"
+    }
+  ]
+}
+{% endhighlight %}
+
 ##  8. Additional Resource Types
 
 There are cases where additional information is needed to fully represent objects and their components.
@@ -1502,7 +1519,9 @@ Many thanks to Matthieu Bonicel, Tom Cramer, Ian Davis, Markus Enders, Renhart G
 
 | Date       | Description                                        |
 | ---------- | -------------------------------------------------- |
-| 2014-08-12 | Version 2.0.0-final-draft (Triumphant Giraffe) RFC [View change log][change-log] |
+| 2015-05-13 | Version 2.1 Initial Draft (Cruising Cardinal) [View change log][change-log] |
+| 2014-09-11 | Version 2.0 (Triumphant Giraffe) [View change log][change-log-20] |
+| 2014-08-12 | Version 2.0.0-final-draft (Triumphant Giraffe)     |
 | 2014-07-01 | Version 2.0.0-draft2 (Triumphant Giraffe) RFC      |
 | 2014-06-01 | Version 2.0.0-draft (Triumphant Giraffe) RFC       |
 | 2013-08-26 | Version 1.0 (unnamed) released.                    |
@@ -1513,7 +1532,8 @@ Many thanks to Matthieu Bonicel, Tom Cramer, Ian Davis, Markus Enders, Renhart G
 [shared-canvas]: /model/shared-canvas/{{ site.shared_canvas.latest.major}}.{{ site.shared_canvas.latest.minor }} "Shared Canvas Data Model"
 [image-api]: /api/image/{{ site.image_api.latest.major }}.{{ site.image_api.latest.minor }}/ "Image API"
 [annex]: /api/annex/services/ "Services Annex Document"
-[change-log]: /api/presentation/2.0/change-log.html "Presentation API 2.0 Change Log"
+[change-log]: /api/presentation/2.1/change-log.html "Presentation API 2.1 Change Log"
+[change-log-20]: /api/presentation/2.0/change-log.html "Presentation API 2.0 Change Log"
 [iiif-community]: /community.html "IIIF Community"
 [apache-notes]: /api/annex/notes/apache.html "Apache HTTP Server Implementation Notes"
 [openanno]: http://www.openannotation.org/spec/core/ "Open Annotation"
