@@ -253,6 +253,16 @@ related
     {: .usage}
     * Any resource _MAY_ have an external resource related to it.
 
+rendering
+:   A link to an external resource intended for display or download by a human user as an alternative rendering of the resource that has the property.  Examples include a rendering of a manifest as the PDF or EPUB with the images and text of the book, or a slide deck with the images of museum object.  A label and the format of the rendering resource _MUST_ be supplied to allow clients to present the option to the user.  This is a more specific relationship than the `related` property above, which could be any related resource rather than an alternate view of the resource.
+
+    Usage:
+    {: .usage}
+    * A Manifest _MAY_ have one or more external rendering resources.
+    * A Sequence _MAY_ have one or more external rendering resources.
+    * A Canvas _MAY_ have one or more external rendering resources.
+    * A Range or Layer _MAY_ have one or more external rendering resources.
+
 service
 :   A link to a service that makes more functionality available for the resource, such as from an image to the base URI of an associated [IIIF Image API][image-api] service. The service resource _SHOULD_ have additional information associated with it in order to allow the client to determine how to make appropriate use of it, such as a `profile` link to a service description. It _MAY_ also have relevant information copied from the service itself. This duplication is permitted in order to increase the performance of rendering the object without necessitating additional HTTP requests.
 
@@ -503,6 +513,11 @@ The example below includes only the manifest-level information, however it _MUST
     "@id": "http://www.example.org/library/catalog/book1.xml",
     "format": "text/xml",
     "profile": "http://example.org/profiles/bibliographic"
+  },
+  "rendering": {
+    "@id": "http://www.example.org/iiif/book1.pdf",
+    "label": "Download as PDF",
+    "format": "application/pdf"
   },
   "within":"http://www.example.org/collections/books/",
 
@@ -1248,6 +1263,11 @@ URL: _http://www.example.org/iiif/book1/manifest_
       "format": "application/marc",
       "profile": "http://www.example.org/profiles/marc21"
     },
+  "rendering": {
+    "@id": "http://www.example.org/iiif/book1.pdf",
+    "label": "Download as PDF",
+    "format": "application/pdf"
+  },
   "within":"http://www.example.org/collections/books/",
 
   "sequences" : [
@@ -1402,26 +1422,26 @@ URL: _http://www.example.org/iiif/book1/manifest_
 | ![not allowed][icon-na]    | Not Allowed |
 {: .image-api-table}
 
-|                | @id                   | @type                 | format                  | height                    | width                     | viewingDirection        | viewingHint                                           |
-| -------------- | --------------------- | --------------------- | ----------------------- | ------------------------- | ------------------------- | ----------------------- | ---------------------- |
-| Collection     | ![required][icon-req] | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![not allowed][icon-na] | ![optional][icon-opt]  |
-| Manifest       | ![required][icon-req] | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![optional][icon-opt]   | ![optional][icon-opt]  |
-| Sequence       | ![optional][icon-opt] | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![optional][icon-opt]   | ![optional][icon-opt]  |
-| Canvas         | ![required][icon-req] | ![required][icon-req] | ![not allowed][icon-na] | ![required][icon-req]     | ![required][icon-req]     | ![not allowed][icon-na] | ![optional][icon-opt]  |
-| Annotation     | ![optional][icon-opt] | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![not allowed][icon-na] | ![optional][icon-opt]  |
-| AnnotationList | ![required][icon-req] | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![not allowed][icon-na] | ![optional][icon-opt]  |
-| Range          | ![required][icon-req] | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![optional][icon-opt]   | ![optional][icon-opt]  |
-| Layer          | ![required][icon-req] | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![optional][icon-opt]   | ![optional][icon-opt]  |
-| Image Content  | ![required][icon-req] | ![required][icon-req] | ![optional][icon-opt]   | ![recommended][icon-opt]  | ![recommended][icon-opt]  | ![not allowed][icon-na] | ![optional][icon-opt]  |
-| Other Content  | ![required][icon-req] | ![required][icon-req] | ![optional][icon-opt]   | ![optional][icon-opt]     | ![optional][icon-opt]     | ![not allowed][icon-na] | ![optional][icon-opt]  |
+|                | @id                       | @type                 | format                  | height                    | width                     | viewingDirection        | viewingHint            |
+| -------------- | ------------------------- | --------------------- | ----------------------- | ------------------------- | ------------------------- | ----------------------- | ---------------------- |
+| Collection     | ![required][icon-req]     | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![not allowed][icon-na] | ![optional][icon-opt]  |
+| Manifest       | ![required][icon-req]     | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![optional][icon-opt]   | ![optional][icon-opt]  |
+| Sequence       | ![optional][icon-opt]     | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![optional][icon-opt]   | ![optional][icon-opt]  |
+| Canvas         | ![required][icon-req]     | ![required][icon-req] | ![not allowed][icon-na] | ![required][icon-req]     | ![required][icon-req]     | ![not allowed][icon-na] | ![optional][icon-opt]  |
+| Annotation     | ![recommended][icon-recc] | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![not allowed][icon-na] | ![optional][icon-opt]  |
+| AnnotationList | ![required][icon-req]     | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![not allowed][icon-na] | ![optional][icon-opt]  |
+| Range          | ![required][icon-req]     | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![optional][icon-opt]   | ![optional][icon-opt]  |
+| Layer          | ![required][icon-req]     | ![required][icon-req] | ![not allowed][icon-na] | ![not allowed][icon-na]   | ![not allowed][icon-na]   | ![optional][icon-opt]   | ![optional][icon-opt]  |
+| Image Content  | ![required][icon-req]     | ![required][icon-req] | ![optional][icon-opt]   | ![recommended][icon-opt]  | ![recommended][icon-opt]  | ![not allowed][icon-na] | ![optional][icon-opt]  |
+| Other Content  | ![required][icon-req]     | ![required][icon-req] | ![optional][icon-opt]   | ![optional][icon-opt]     | ![optional][icon-opt]     | ![not allowed][icon-na] | ![optional][icon-opt]  |
 {: .image-api-table}
 
 |                | label                  | metadata                     | description                 | thumbnail                   | attribution            | license                 | logo                     |
 | -------------- | ---------------------- | ---------------------------- | --------------------------- | ----------------------------| ---------------------- | ----------------------- | ------------------------ |
-| Collection     | ![required][icon-req]  | ![recommended][icon-recc]    | ![recommended][icon-recc]   | ![recommended][icon-recc]       | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
+| Collection     | ![required][icon-req]  | ![recommended][icon-recc]    | ![recommended][icon-recc]   | ![recommended][icon-recc]   | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
 | Manifest       | ![required][icon-req]  | ![recommended][icon-recc]    | ![recommended][icon-recc]   | ![recommended][icon-recc]   | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
 | Sequence       | ![optional][icon-opt]  | ![optional][icon-opt]        | ![optional][icon-opt]       | ![optional][icon-opt]       | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
-| Canvas         | ![required][icon-req]  | ![optional][icon-opt]        | ![optional][icon-opt]       | ![recommended][icon-recc]       | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
+| Canvas         | ![required][icon-req]  | ![optional][icon-opt]        | ![optional][icon-opt]       | ![recommended][icon-recc]   | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
 | Annotation     | ![optional][icon-opt]  | ![optional][icon-opt]        | ![optional][icon-opt]       | ![optional][icon-opt]       | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
 | AnnotationList | ![optional][icon-opt]  | ![optional][icon-opt]        | ![optional][icon-opt]       | ![optional][icon-opt]       | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
 | Range          | ![required][icon-req]  | ![optional][icon-opt]        | ![optional][icon-opt]       | ![optional][icon-opt]       | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
@@ -1430,18 +1450,32 @@ URL: _http://www.example.org/iiif/book1/manifest_
 | Other Content  | ![optional][icon-opt]  | ![optional][icon-opt]        | ![optional][icon-opt]       | ![optional][icon-opt]       | ![optional][icon-opt]  | ![optional][icon-opt]   | ![optional][icon-opt]    |
 {: .image-api-table}
 
-|                | seeAlso                | service                | related                | within                     | startCanvas             |
-| -------------- | ---------------------- | ---------------------- | ---------------------- | -------------------------- | ----------------------- |
-| Collection     | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![not allowed][icon-na] |
-| Manifest       | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![not allowed][icon-na] |
-| Sequence       | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![optional][icon-opt]   |
-| Canvas         | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![not allowed][icon-na] |
-| Annotation     | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![not allowed][icon-na] |
-| AnnotationList | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![not allowed][icon-na] |
-| Range          | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![optional][icon-opt]   |
-| Layer          | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![not allowed][icon-na] |
-| Image Content  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![not allowed][icon-na] |
-| Other Content  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]      | ![not allowed][icon-na] |
+|                | seeAlso                | service                | related                | rendering              | within                 | startCanvas             |
+| -------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ----------------------- |
+| Collection     | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![not allowed][icon-na] |
+| Manifest       | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![not allowed][icon-na] |
+| Sequence       | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]   |
+| Canvas         | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![not allowed][icon-na] |
+| Annotation     | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![not allowed][icon-na] |
+| AnnotationList | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![not allowed][icon-na] |
+| Range          | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]   |
+| Layer          | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![not allowed][icon-na] |
+| Image Content  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![not allowed][icon-na] |
+| Other Content  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![not allowed][icon-na] |
+{: .image-api-table}
+
+|                | Dereferenceable?       |         
+| -------------- | ---------------------- | 
+| Collection     | ![required][icon-req]  |
+| Manifest       | ![required][icon-req]  | 
+| Sequence       | ![optional][icon-opt]  | 
+| Canvas         | ![optional][icon-opt]  | 
+| Annotation     | ![optional][icon-opt]  |
+| AnnotationList | ![required][icon-req]  | 
+| Range          | ![optional][icon-opt]  | 
+| Layer          | ![optional][icon-opt]  |
+| Image Content  | ![required][icon-req]  | 
+| Other Content  | ![required][icon-req]  | 
 {: .image-api-table}
 
 ### C. Versioning
