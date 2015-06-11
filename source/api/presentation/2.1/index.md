@@ -396,7 +396,7 @@ Resource descriptions _SHOULD_ be embedded within higher-level descriptions, and
 // Option A, plain string
 {"seeAlso": "http://www.example.org/descriptions/book1.xml"}
 // Option B, object with @id property
-{"seeAlso": {"@id": "http://www.example.org/descriptions/book1.xml", "format": "text/xml"} }
+{"seeAlso": {"@id": "http://www.example.org/descriptions/book1.xml", "format": "text/xml"}}
 {% endhighlight %}
 
 #### 5.3.2. Repeated Properties
@@ -418,7 +418,7 @@ Most of the properties _MAY_ be repeated. This is done by giving a list of value
 Language _MAY_ be associated with strings that are intended to be displayed to the user with the following pattern of `@value` plus the [RFC 5646][rfc5646] code in `@language`, instead of a plain string.  For example:
 
 {% highlight json %}
-{"description": {"@value": "Here is a longer description of the object", "@language": "en"} }
+{"description": {"@value": "Here is a longer description of the object", "@language": "en"}}
 {% endhighlight %}
 
 This pattern may be used in `label`, `description`, `attribution` and the `label` and `value` fields of the `metadata` construction.
@@ -440,7 +440,7 @@ In order to avoid HTML or script injection attacks, clients _MUST_ remove:
 Clients _SHOULD_ allow only `a`, `b`, `br`, `i`, `img`, `p`, and `span` tags. Clients _MAY_ choose to remove any and all tags, therefore it _SHOULD NOT_ be assumed that the formatting will always be rendered.
 
 {% highlight json %}
-{"description": {"@value": "<p>Some <b>description</b></p>", "@language": "en-latn"} }
+{"description": {"@value": "<p>Some <b>description</b></p>", "@language": "en-latn"}}
 {% endhighlight %}
 
 #### 5.3.5. Linked Data Context and Extensions
@@ -836,7 +836,7 @@ Instead of referencing transcription text externally, it is often easier to reco
 Content _MAY_ be embedded instead of referenced by using the following pattern within the annotation block:
 
 {% highlight json %}
-{ "resource": { "@type": "cnt:ContextAsText", "chars": "text here" } }
+{"resource": {"@type": "cnt:ContextAsText", "chars": "text here"}}
 {% endhighlight %}
 
 If it is desirable to associate the language with the content, then it _MUST_ be `language` not `@language` (otherwise the `chars` field would need to be an array with `@value`). The media type _MAY_ be given using a `format` field.
@@ -1218,17 +1218,20 @@ An example collection document:
   "attribution": "Provided by Example Organization",
 
   "collections": [
-    { "@id": "http://example.org/iiif/collection/part1",
+    {
+      "@id": "http://example.org/iiif/collection/part1",
       "@type": "sc:Collection",
       "label": "Sub Collection 1"
-     },
-     { "@id": "http://example.org/iiif/collection/part2",
-       "@type": "sc:Collection",
-       "label": "Sub Collection 2"
-      }
+    },
+    {
+      "@id": "http://example.org/iiif/collection/part2",
+      "@type": "sc:Collection",
+      "label": "Sub Collection 2"
+    }
   ],
   "manifests": [
-    { "@id": "http://example.org/iiif/book1/manifest",
+    {
+      "@id": "http://example.org/iiif/book1/manifest",
       "@type": "sc:Manifest",
       "label": "Book 1"
     }
