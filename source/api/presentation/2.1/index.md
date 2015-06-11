@@ -1012,7 +1012,7 @@ Alternatively, if the image is available via the IIIF Image API, it may be more 
 
 For annotations which are comments about the canvas, as opposed to painting content resources onto the canvas, there are different types of motivation to make the distinction clear. For annotations about the content (such as comments, notes, descriptions etc.) the `motivation` _SHOULD_ be "oa:commenting", but _MAY_ be any from the list given in the [Open Annotation][openanno] specification.
 
-Unlike painting Annotations, comments or annotations with other motivations, SHOULD have a URI assigned as their identity and provided in the `@id` property.  When dereferencing that URI, the representation of the Annotation SHOULD be returned.  This is to allow further annotations to annotate the comment, in order to reply to it, to provide moderation information such as a `+1`, or to tag it for organizational or discovery purposes.
+Unlike painting annotations, comments or annotations with other motivations, _SHOULD_ have a URI assigned as their identity and provided in the `@id` property.  When dereferencing that URI, the representation of the annotation _SHOULD_ be returned.  This is to allow further annotations to annotate the comment, for example in order to reply to it, or to tag it for organizational or discovery purposes.
 
 {% highlight json %}
 {
