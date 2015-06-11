@@ -394,10 +394,9 @@ Resource descriptions _SHOULD_ be embedded within higher-level descriptions, and
 
 {% highlight json %}
 // Option A, plain string
-{"seeAlso" : "http://www.example.org/descriptions/book1.xml"}
+{"seeAlso": "http://www.example.org/descriptions/book1.xml"}
 // Option B, object with @id property
-{"seeAlso" : {"@id":"http://www.example.org/descriptions/book1.xml",
-              "format": "text/xml"}}
+{"seeAlso": {"@id": "http://www.example.org/descriptions/book1.xml", "format": "text/xml"} }
 {% endhighlight %}
 
 #### 5.3.2. Repeated Properties
@@ -406,11 +405,10 @@ Most of the properties _MAY_ be repeated. This is done by giving a list of value
 
 {% highlight json %}
 { 
-  "seeAlso" : [
+  "seeAlso": [
     "http://www.example.org/descriptions/book1.md", 
     "http://www.example.org/descriptions/book1.csv",
-    {"@id": "http://www.example.org/descriptions/book1.xml",
-     "format": "text/xml"} 
+    {"@id": "http://www.example.org/descriptions/book1.xml", "format": "text/xml"} 
   ]
 }
 {% endhighlight %}
@@ -420,7 +418,7 @@ Most of the properties _MAY_ be repeated. This is done by giving a list of value
 Language _MAY_ be associated with strings that are intended to be displayed to the user with the following pattern of `@value` plus the [RFC 5646][rfc5646] code in `@language`, instead of a plain string.  For example:
 
 {% highlight json %}
-{"description" : {"@value":"Here is a longer description of the object", "@language":"en"} }
+{"description": {"@value": "Here is a longer description of the object", "@language": "en"} }
 {% endhighlight %}
 
 This pattern may be used in `label`, `description`, `attribution` and the `label` and `value` fields of the `metadata` construction.
@@ -442,12 +440,7 @@ In order to avoid HTML or script injection attacks, clients _MUST_ remove:
 Clients _SHOULD_ allow only `a`, `b`, `br`, `i`, `img`, `p`, and `span` tags. Clients _MAY_ choose to remove any and all tags, therefore it _SHOULD NOT_ be assumed that the formatting will always be rendered.
 
 {% highlight json %}
-{
-  "description": {
-    "@value":"<p>Some <b>description</b></p>",
-    "@language" : "en-latn"
-  }
-}
+{"description": {"@value": "<p>Some <b>description</b></p>", "@language": "en-latn"} }
 {% endhighlight %}
 
 #### 5.3.5. Linked Data Context and Extensions
@@ -483,29 +476,29 @@ The example below includes only the manifest-level information, however it _MUST
 {% highlight json %}
 {
   // Metadata about this manifest file
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/manifest",
-  "@type":"sc:Manifest",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/manifest",
+  "@type": "sc:Manifest",
 
   // Descriptive metadata about the object/work
   "label": "Book 1",
   "metadata": [
-    {"label":"Author", "value":"Anne Author"},
-    {"label":"Published", "value": [
-        {"@value": "Paris, circa 1400", "@language":"en"},
-        {"@value": "Paris, environ 1400", "@language":"fr"}
+    {"label": "Author", "value": "Anne Author"},
+    {"label": "Published", "value": [
+        {"@value": "Paris, circa 1400", "@language": "en"},
+        {"@value": "Paris, environ 1400", "@language": "fr"}
       ]
     },
-    {"label":"Source", 
+    {"label": "Source", 
      "value": "<span>From: <a href=\"http://example.org/db/1.html\">Some Collection</a></span>"}
   ],
-  "description":"A longer description of this example book. It should give some real information.",
+  "description": "A longer description of this example book. It should give some real information.",
   "thumbnail": {
     "@id": "http://www.example.org/images/book1-page1/full/80,100/0/default.jpg",
     "service": {
-      "@context":"http://iiif.io/api/image/{{ site.image_api.latest.major }}/context.json",
-      "@id":"http://www.example.org/images/book1-page1",
-      "profile":"http://iiif.io/api/image/{{ site.image_api.latest.major }}/level1.json"
+      "@context": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/context.json",
+      "@id": "http://www.example.org/images/book1-page1",
+      "profile": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/level1.json"
     }
   },
 
@@ -515,8 +508,8 @@ The example below includes only the manifest-level information, however it _MUST
   "viewingDate": "1856-01-01T00:00:00Z",
 
   // Rights Information
-  "license":"http://www.example.org/license.html",
-  "attribution":"Provided by Example Organization",
+  "license": "http://www.example.org/license.html",
+  "attribution": "Provided by Example Organization",
   "logo": "http://www.example.org/logos/institution1.jpg",
 
   // Links
@@ -539,14 +532,14 @@ The example below includes only the manifest-level information, however it _MUST
     "label": "Download as PDF",
     "format": "application/pdf"
   },
-  "within":"http://www.example.org/collections/books/",
+  "within": "http://www.example.org/collections/books/",
 
   // List of sequences
-  "sequences" : [
+  "sequences": [
       {
-        "@id":"http://www.example.org/iiif/book1/sequence/normal",
-        "@type":"sc:Sequence",
-        "label":"Current Page Order"
+        "@id": "http://www.example.org/iiif/book1/sequence/normal",
+        "@type": "sc:Sequence",
+        "label": "Current Page Order"
         // sequence's page order should be included here, see below...
       }
       // Any additional sequences can be referenced here...
@@ -576,34 +569,34 @@ In the manifest example above, the sequence is referenced by its URI and contain
 {% highlight json %}
 {
   // Metadata about this sequence
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/sequence/normal",
-  "@type":"sc:Sequence",
-  "label":"Current Page Order",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/sequence/normal",
+  "@type": "sc:Sequence",
+  "label": "Current Page Order",
 
-  "viewingDirection":"left-to-right",
-  "viewingHint":"paged",
+  "viewingDirection": "left-to-right",
+  "viewingHint": "paged",
   "startCanvas": "http://www.example.org/iiif/book1/canvas/p2",
 
   // The order of the canvases
   "canvases": [
     {
-      "@id":"http://www.example.org/iiif/book1/canvas/p1",
-      "@type":"sc:Canvas",
-      "label":"p. 1"
+      "@id": "http://www.example.org/iiif/book1/canvas/p1",
+      "@type": "sc:Canvas",
+      "label": "p. 1"
       // ...
       ]
     },
     {
-      "@id":"http://www.example.org/iiif/book1/canvas/p2",
-      "@type":"sc:Canvas",
-      "label":"p. 2"
+      "@id": "http://www.example.org/iiif/book1/canvas/p2",
+      "@type": "sc:Canvas",
+      "label": "p. 2"
       // ...
     },
     {
-      "@id":"http://www.example.org/iiif/book1/canvas/p3",
-      "@type":"sc:Canvas",
-      "label":"p. 3"
+      "@id": "http://www.example.org/iiif/book1/canvas/p3",
+      "@type": "sc:Canvas",
+      "label": "p. 3"
       // ...
     }
   ]
@@ -634,24 +627,24 @@ Canvases _MAY_ be dereferenced separately from the manifest via their URIs, and 
 {% highlight json %}
 {
   // Metadata about this canvas
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/canvas/p1",
-  "@type":"sc:Canvas",
-  "label":"p. 1",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/canvas/p1",
+  "@type": "sc:Canvas",
+  "label": "p. 1",
   "height":1000,
   "width":750,
 
   "images": [
     {
-      "@type":"oa:Annotation"
+      "@type": "oa:Annotation"
       // Link from Image to canvas should be included here, as below
     }
   ],
   "otherContent": [
     {
       // Reference to list of other Content resources, _not included directly_
-      "@id":"http://www.example.org/iiif/book1/list/p1",
-      "@type":"sc:AnnotationList"
+      "@id": "http://www.example.org/iiif/book1/list/p1",
+      "@type": "sc:AnnotationList"
     }
   ]
 
@@ -683,23 +676,23 @@ Additional features of the [Open Annotation][openanno] data model _MAY_ also be 
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/annotation/p0001-image",
-  "@type":"oa:Annotation",
-  "motivation":"sc:painting",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/annotation/p0001-image",
+  "@type": "oa:Annotation",
+  "motivation": "sc:painting",
   "resource": {
-    "@id":"http://www.example.org/iiif/book1/res/page1.jpg",
-    "@type":"dctypes:Image",
-    "format":"image/jpeg",
+    "@id": "http://www.example.org/iiif/book1/res/page1.jpg",
+    "@type": "dctypes:Image",
+    "format": "image/jpeg",
     "service": {
       "@context": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/context.json",
-      "@id":"http://www.example.org/images/book1-page1",
-      "profile":"http://iiif.io/api/image/{{ site.image_api.latest.major }}/profiles/level2.json",
+      "@id": "http://www.example.org/images/book1-page1",
+      "profile": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/profiles/level2.json",
     },
     "height":2000,
     "width":1500
   },
-  "on":"http://www.example.org/iiif/book1/canvas/p1"
+  "on": "http://www.example.org/iiif/book1/canvas/p1"
 }
 {% endhighlight %}
 
@@ -726,30 +719,30 @@ Note well that Annotation Lists _MUST NOT_ be embedded within the manifest.
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/list/p1",
-  "@type":"sc:AnnotationList",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/list/p1",
+  "@type": "sc:AnnotationList",
 
   "resources": [
     {
-      "@type":"oa:Annotation",
-      "motivation":"sc:painting",
+      "@type": "oa:Annotation",
+      "motivation": "sc:painting",
       "resource":{
-        "@id":"http://www.example.org/iiif/book1/res/music.mp3",
-        "@type":"dctypes:Sound",
-        "format":"audio/mpeg"
+        "@id": "http://www.example.org/iiif/book1/res/music.mp3",
+        "@type": "dctypes:Sound",
+        "format": "audio/mpeg"
       },
-      "on":"http://www.example.org/iiif/book1/canvas/p1"
+      "on": "http://www.example.org/iiif/book1/canvas/p1"
     },
     {
-      "@type":"oa:Annotation",
-      "motivation":"sc:painting",
+      "@type": "oa:Annotation",
+      "motivation": "sc:painting",
       "resource":{
-        "@id":"http://www.example.org/iiif/book1/res/tei-text-p1.xml",
-        "@type":"dctypes:Text",
-        "format":"text/xml"
+        "@id": "http://www.example.org/iiif/book1/res/tei-text-p1.xml",
+        "@type": "dctypes:Text",
+        "format": "text/xml"
       },
-      "on":"http://www.example.org/iiif/book1/canvas/p1"
+      "on": "http://www.example.org/iiif/book1/canvas/p1"
     },
     // ... and so on
   ]
@@ -772,18 +765,18 @@ It is important to be able to extract parts, or segments, of resources. In parti
 
     {% highlight json %}
     {
-      "@context":"http://iiif.io/api/presentation/2/context.json",
-      "@id":"http://www.example.org/iiif/book1/annotation/anno1",
-      "@type":"oa:Annotation",
-      "motivation":"sc:painting",
+      "@context": "http://iiif.io/api/presentation/2/context.json",
+      "@id": "http://www.example.org/iiif/book1/annotation/anno1",
+      "@type": "oa:Annotation",
+      "motivation": "sc:painting",
       "resource":{
         // Crop out scanning bed
-        "@id":"http://www.example.org/iiif/book1/res/page1.jpg#xywh=40,50,1200,1800",
-        "@type":"dctypes:Image",
-        "format":"image/jpeg"
+        "@id": "http://www.example.org/iiif/book1/res/page1.jpg#xywh=40,50,1200,1800",
+        "@type": "dctypes:Image",
+        "format": "image/jpeg"
       },
       // canvas size is 1200x1800
-      "on":"http://www.example.org/iiif/book1/canvas/p1"
+      "on": "http://www.example.org/iiif/book1/canvas/p1"
     }
     {% endhighlight %}
 
@@ -791,20 +784,20 @@ It is important to be able to extract parts, or segments, of resources. In parti
 
     {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/annotation/anno1",
-  "@type":"oa:Annotation",
-  "motivation":"sc:painting",
-  "resource":{
-    "@id" : "http://www.example.org/iiif/book1-page1/40,50,1200,1800/full/0/default.jpg",
-    "@type":"oa:SpecificResource",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/annotation/anno1",
+  "@type": "oa:Annotation",
+  "motivation": "sc:painting",
+  "resource": {
+    "@id": "http://www.example.org/iiif/book1-page1/40,50,1200,1800/full/0/default.jpg",
+    "@type": "oa:SpecificResource",
     "full": {
-      "@id":"http://www.example.org/iiif/book1-page1/full/full/0/default.jpg",
-      "@type":"dctypes:Image",
+      "@id": "http://www.example.org/iiif/book1-page1/full/full/0/default.jpg",
+      "@type": "dctypes:Image",
       "service": {
         "@context": "http://iiif.io/api/image/2/context.json",
         "@id": "http://www.example.org/iiif/book1-page1",
-        "profile":"http://iiif.io/api/image/2/level2.json"
+        "profile": "http://iiif.io/api/image/2/level2.json"
       }
     },
     "selector": {
@@ -813,7 +806,7 @@ It is important to be able to extract parts, or segments, of resources. In parti
       "region": "40,50,1200,1800"
     }
   },
-  "on":"http://www.example.org/iiif/book1/canvas/p1#xywh=50,50,320,240"
+  "on": "http://www.example.org/iiif/book1/canvas/p1#xywh=50,50,320,240"
 }
     {% endhighlight %}
 
@@ -823,16 +816,16 @@ It is important to be able to extract parts, or segments, of resources. In parti
 
     {% highlight json %}
     {
-      "@context":"http://iiif.io/api/presentation/2/context.json",
-      "@id":"http://www.example.org/iiif/book1/annotation/anno1",
-      "@type":"oa:Annotation",
-      "motivation":"sc:painting",
+      "@context": "http://iiif.io/api/presentation/2/context.json",
+      "@id": "http://www.example.org/iiif/book1/annotation/anno1",
+      "@type": "oa:Annotation",
+      "motivation": "sc:painting",
       "resource":{
-        "@id":"http://www.example.org/iiif/book1/res/tei.xml#xpointer(//line[1])",
-        "@type":"dctypes:Text",
-        "format":"text/xml"
+        "@id": "http://www.example.org/iiif/book1/res/tei.xml#xpointer(//line[1])",
+        "@type": "dctypes:Text",
+        "format": "text/xml"
       },
-      "on":"http://www.example.org/iiif/book1/canvas/p1#xywh=100,100,500,300"
+      "on": "http://www.example.org/iiif/book1/canvas/p1#xywh=100,100,500,300"
     }
     {% endhighlight %}
 
@@ -843,7 +836,7 @@ Instead of referencing transcription text externally, it is often easier to reco
 Content _MAY_ be embedded instead of referenced by using the following pattern within the annotation block:
 
 {% highlight json %}
-{ "resource" : { "@type" : "cnt:ContextAsText", "chars" : "text here" } }
+{ "resource": { "@type": "cnt:ContextAsText", "chars": "text here" } }
 {% endhighlight %}
 
 If it is desirable to associate the language with the content, then it _MUST_ be `language` not `@language` (otherwise the `chars` field would need to be an array with `@value`). The media type _MAY_ be given using a `format` field.
@@ -852,17 +845,17 @@ An example of this feature:
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/annotation/p1",
-  "@type":"oa:Annotation",
-  "motivation":"sc:painting",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/annotation/p1",
+  "@type": "oa:Annotation",
+  "motivation": "sc:painting",
   "resource":{
-    "@type":"cnt:ContentAsText",
-    "chars":"Here starts book one...",
-    "format":"text/plain",
-    "language":"en"
+    "@type": "cnt:ContentAsText",
+    "chars": "Here starts book one...",
+    "format": "text/plain",
+    "language": "en"
   },
-  "on":"http://www.example.org/iiif/book1/canvas/p1#xywh=100,150,500,25"
+  "on": "http://www.example.org/iiif/book1/canvas/p1#xywh=100,150,500,25"
 }
 {% endhighlight %}
 
@@ -878,26 +871,26 @@ This can be used to model foldouts and other dynamic features of a page, by asso
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/annotation/anno1",
-  "@type":"oa:Annotation",
-  "motivation":"sc:painting",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/annotation/anno1",
+  "@type": "oa:Annotation",
+  "motivation": "sc:painting",
   "resource":{
-    "@type":"oa:Choice",
+    "@type": "oa:Choice",
     "default":{
-      "@id":"http://www.example.org/iiif/book1/res/page1.jpg",
-      "@type":"dctypes:Image",
-      "label":"Color"
+      "@id": "http://www.example.org/iiif/book1/res/page1.jpg",
+      "@type": "dctypes:Image",
+      "label": "Color"
     },
     "item": [
       {
-        "@id":"http://www.example.org/iiif/book1/res/page1-blackandwhite.jpg",
-        "@type":"dctypes:Image",
-        "label":"Black and White"
+        "@id": "http://www.example.org/iiif/book1/res/page1-blackandwhite.jpg",
+        "@type": "dctypes:Image",
+        "label": "Black and White"
       }
     ]
   },
-  "on":"http://www.example.org/iiif/book1/canvas/p1"
+  "on": "http://www.example.org/iiif/book1/canvas/p1"
 }
 {% endhighlight %}
 
@@ -911,22 +904,22 @@ If the section of an image is mapped to part of a canvas, as in the example belo
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/annotation/anno1",
-  "@type":"oa:Annotation",
-  "motivation":"sc:painting",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/annotation/anno1",
+  "@type": "oa:Annotation",
+  "motivation": "sc:painting",
   "resource":{
-    "@type":"oa:SpecificResource",
+    "@type": "oa:SpecificResource",
     "full": {
-      "@id":"http://www.example.org/iiif/book1/res/page1.jpg",
-      "@type":"dctypes:Image"
+      "@id": "http://www.example.org/iiif/book1/res/page1.jpg",
+      "@type": "dctypes:Image"
     },
     "selector": {
       "@type":["oa:SvgSelector","cnt:ContentAsText"],
-      "chars":"<svg xmlns="..."><path d="..."/></svg>"
+      "chars": "<svg xmlns="..."><path d="..."/></svg>"
     }
   },
-  "on":"http://www.example.org/iiif/book1/canvas/p1#xywh=100,100,300,300"
+  "on": "http://www.example.org/iiif/book1/canvas/p1#xywh=100,100,300,300"
 }
 {% endhighlight %}
 
@@ -938,23 +931,23 @@ In the example below, the text should be colored red.
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/annotation/anno1",
-  "@type":"oa:Annotation",
-  "motivation":"sc:painting",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/annotation/anno1",
+  "@type": "oa:Annotation",
+  "motivation": "sc:painting",
   "stylesheet":{
     "@type": ["oa:CssStyle", "cnt:ContextAsText"],
     "chars": ".red {color: red;}"
   },
   "resource":{
-    "@type":"oa:SpecificResource",
-    "style":"red",
+    "@type": "oa:SpecificResource",
+    "style": "red",
     "full": {
-      "@type":"cnt:ContentAsText",
-      "chars":"Rubrics are Red, ..."
+      "@type": "cnt:ContentAsText",
+      "chars": "Rubrics are Red, ..."
     }
   },
-  "on":"http://www.example.org/iiif/book1/canvas/p1#xywh=100,150,500,30"
+  "on": "http://www.example.org/iiif/book1/canvas/p1#xywh=100,150,500,30"
 }
 {% endhighlight %}
 
@@ -965,23 +958,23 @@ CSS may also be used for rotation of images which are not correctly aligned with
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/annotation/anno1",
-  "@type":"oa:Annotation",
-  "motivation":"sc:painting",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/annotation/anno1",
+  "@type": "oa:Annotation",
+  "motivation": "sc:painting",
   "stylesheet":{
     "@type": ["oa:CssStyle", "cnt:ContextAsText"],
     "chars": ".rotated {transform-origin: top left; transform: rotate(-45deg);}"
   },
   "resource":{
-    "@type":"oa:SpecificResource",
-    "style":"rotated",
+    "@type": "oa:SpecificResource",
+    "style": "rotated",
     "full": {
-      "@id":"http://www.example.org/iiif/book1/res/page1-detail.png",
-      "@type":"dctypes:Image"
+      "@id": "http://www.example.org/iiif/book1/res/page1-detail.png",
+      "@type": "dctypes:Image"
     }
   },
-  "on":"http://www.example.org/iiif/book1/canvas/p1#xywh=100,150,500,30"
+  "on": "http://www.example.org/iiif/book1/canvas/p1#xywh=100,150,500,30"
 }
 {% endhighlight %}
 
@@ -989,20 +982,20 @@ Alternatively, if the image is available via the IIIF Image API, it may be more 
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/annotation/anno1",
-  "@type":"oa:Annotation",
-  "motivation":"sc:painting",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/annotation/anno1",
+  "@type": "oa:Annotation",
+  "motivation": "sc:painting",
   "resource":{
-    "@id" : "http://www.example.org/iiif/book1-page1/full/full/90/default.jpg",
-    "@type":"oa:SpecificResource",
+    "@id": "http://www.example.org/iiif/book1-page1/full/full/90/default.jpg",
+    "@type": "oa:SpecificResource",
     "full": {
-      "@id":"http://www.example.org/iiif/book1-page1/full/full/0/default.jpg",
-      "@type":"dctypes:Image",
+      "@id": "http://www.example.org/iiif/book1-page1/full/full/0/default.jpg",
+      "@type": "dctypes:Image",
       "service": {
         "@context": "http://iiif.io/api/image/2/context.json",
         "@id": "http://www.example.org/iiif/book1-page1",
-        "profile":"http://iiif.io/api/image/2/level2.json"
+        "profile": "http://iiif.io/api/image/2/level2.json"
       }
     },
     "selector": {
@@ -1011,7 +1004,7 @@ Alternatively, if the image is available via the IIIF Image API, it may be more 
       "rotation": "90"
     }
   },
-  "on":"http://www.example.org/iiif/book1/canvas/p1#xywh=50,50,320,240"
+  "on": "http://www.example.org/iiif/book1/canvas/p1#xywh=50,50,320,240"
 }
 {% endhighlight %}
 
@@ -1023,16 +1016,16 @@ Unlike painting Annotations, comments or annotations with other motivations, SHO
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/annotation/anno1",
-  "@type":"oa:Annotation",
-  "motivation":"oa:commenting",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/annotation/anno1",
+  "@type": "oa:Annotation",
+  "motivation": "oa:commenting",
   "resource":{
-    "@id":"http://www.example.org/iiif/book1/res/comment1.html",
-    "@type":"dctypes:Text",
-    "format":"text/html"
+    "@id": "http://www.example.org/iiif/book1/res/comment1.html",
+    "@type": "dctypes:Text",
+    "format": "text/html"
   },
-  "on":"http://www.example.org/iiif/book1/canvas/p1"
+  "on": "http://www.example.org/iiif/book1/canvas/p1"
 }
 {% endhighlight %}
 
@@ -1040,14 +1033,14 @@ Other resources may also have comments made about them, including Manifests (com
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/manifest",
-  "@type":"sc:Manifest",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/manifest",
+  "@type": "sc:Manifest",
   // ...
 
   "otherContent": [
     {
-      "@id":"http://www.example.org/iiif/book1/list/book1",
+      "@id": "http://www.example.org/iiif/book1/list/book1",
       "@type": "sc:AnnotationList"
     }
   ]
@@ -1087,9 +1080,9 @@ Ranges are linked or embedded within the manifest in a `structures` field.  It i
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/manifest",
-  "@type":"sc:Manifest",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/manifest",
+  "@type": "sc:Manifest",
   // Metadata ...
 
   "sequences": [
@@ -1098,21 +1091,21 @@ Ranges are linked or embedded within the manifest in a `structures` field.  It i
 
   "structures": [
     {
-      "@id":"http://www.example.org/iiif/book1/range/r0",
-      "@type":"sc:Range",
-      "label":"Table of Contents",
-      "viewingHint":"top",
-      "ranges" : [
+      "@id": "http://www.example.org/iiif/book1/range/r0",
+      "@type": "sc:Range",
+      "label": "Table of Contents",
+      "viewingHint": "top",
+      "ranges": [
           "http://www.example.org/iiif/book1/range/r1",
           "http://www.example.org/iiif/book1/range/r2",
           "http://www.example.org/iiif/book1/range/r3"
       ]
     },
     {
-        "@id":"http://www.example.org/iiif/book1/range/r1",
-        "@type":"sc:Range",
-        "label":"Introduction",
-        "ranges" : ["http://www.example.org/iiif/book1/range/r1-1"],
+        "@id": "http://www.example.org/iiif/book1/range/r1",
+        "@type": "sc:Range",
+        "label": "Introduction",
+        "ranges": ["http://www.example.org/iiif/book1/range/r1-1"],
         "canvases": [
           "http://www.example.org/iiif/book1/canvas/p1",
           "http://www.example.org/iiif/book1/canvas/p2",
@@ -1120,9 +1113,9 @@ Ranges are linked or embedded within the manifest in a `structures` field.  It i
         ]
     },
     {
-        "@id":"http://www.example.org/iiif/book1/range/r1-1",
-        "@type":"sc:Range",
-        "label":"Objectives and Scope",
+        "@id": "http://www.example.org/iiif/book1/range/r1-1",
+        "@type": "sc:Range",
+        "label": "Objectives and Scope",
         "canvases": ["http://www.example.org/iiif/book1/canvas/p2#xywh=0,0,500,500"]
     }
     // And any additional ranges here
@@ -1147,9 +1140,9 @@ Each annotation list _MAY_ be part of one or more layers, and this is recorded u
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/list/l1",
-  "@type":"sc:AnnotationList",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/list/l1",
+  "@type": "sc:AnnotationList",
   "within": {
     "@id": "http://www.example.org/iiif/book1/layer/transcription",
     "@type": "sc:Layer",
@@ -1162,10 +1155,10 @@ If the layer's URI is dereferenced, the annotation list resources are given in a
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@id":"http://www.example.org/iiif/book1/layer/transcription",
-  "@type":"sc:Layer",
-  "label":"Diplomatic Transcription",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://www.example.org/iiif/book1/layer/transcription",
+  "@type": "sc:Layer",
+  "label": "Diplomatic Transcription",
   // Other properties here ...
 
   "otherContent": [
@@ -1237,7 +1230,7 @@ An example collection document:
   "manifests": [
     { "@id": "http://example.org/iiif/book1/manifest",
       "@type": "sc:Manifest",
-      "label" : "Book 1"
+      "label": "Book 1"
     }
   ]
 }
@@ -1252,24 +1245,24 @@ URL: _http://www.example.org/iiif/book1/manifest_
 
 {% highlight json %}
 {
-  "@context":"http://iiif.io/api/presentation/2/context.json",
-  "@type":"sc:Manifest",
-  "@id":"http://www.example.org/iiif/book1/manifest",
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@type": "sc:Manifest",
+  "@id": "http://www.example.org/iiif/book1/manifest",
 
-  "label":"Book 1",
+  "label": "Book 1",
   "metadata": [
-    {"label":"Author", "value":"Anne Author"},
-    {"label":"Published", "value": [
-        {"@value": "Paris, circa 1400", "@language":"en"},
-        {"@value": "Paris, environ 14eme siecle", "@language":"fr"}
+    {"label": "Author", "value": "Anne Author"},
+    {"label": "Published", "value": [
+        {"@value": "Paris, circa 1400", "@language": "en"},
+        {"@value": "Paris, environ 14eme siecle", "@language": "fr"}
         ]
     }
   ],
-  "description":"A longer description of this example book. It should give some real information.",
+  "description": "A longer description of this example book. It should give some real information.",
   "viewingDate": "1856-01-01T00:00:00Z",
 
-  "license":"http://www.example.org/license.html",
-  "attribution":"Provided by Example Organization",
+  "license": "http://www.example.org/license.html",
+  "attribution": "Provided by Example Organization",
   "service": {
     "@context": "http://example.org/ns/jsonld/context.json",
     "@id": "http://example.org/service/example",
@@ -1286,112 +1279,112 @@ URL: _http://www.example.org/iiif/book1/manifest_
     "label": "Download as PDF",
     "format": "application/pdf"
   },
-  "within":"http://www.example.org/collections/books/",
+  "within": "http://www.example.org/collections/books/",
 
-  "sequences" : [
+  "sequences": [
       {
-        "@id":"http://www.example.org/iiif/book1/sequence/normal",
-        "@type":"sc:Sequence",
-        "label":"Current Page Order",
-        "viewingDirection":"left-to-right",
-        "viewingHint":"paged",
+        "@id": "http://www.example.org/iiif/book1/sequence/normal",
+        "@type": "sc:Sequence",
+        "label": "Current Page Order",
+        "viewingDirection": "left-to-right",
+        "viewingHint": "paged",
         "canvases": [
           {
-            "@id":"http://www.example.org/iiif/book1/canvas/p1",
-            "@type":"sc:Canvas",
-            "label":"p. 1",
+            "@id": "http://www.example.org/iiif/book1/canvas/p1",
+            "@type": "sc:Canvas",
+            "label": "p. 1",
             "height":1000,
             "width":750,
             "images": [
               {
-                "@type":"oa:Annotation",
-                "motivation":"sc:painting",
+                "@type": "oa:Annotation",
+                "motivation": "sc:painting",
                 "resource":{
-                    "@id":"http://www.example.org/iiif/book1/res/page1.jpg",
-                    "@type":"dctypes:Image",
-                    "format":"image/jpeg",
+                    "@id": "http://www.example.org/iiif/book1/res/page1.jpg",
+                    "@type": "dctypes:Image",
+                    "format": "image/jpeg",
                     "service": {
                         "@context": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/context.json",
                         "@id": "http://www.example.org/images/book1-page1",
-                        "profile":"http://iiif.io/api/image/{{ site.image_api.latest.major }}/level1.json"
+                        "profile": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/level1.json"
                     },
                     "height":2000,
                     "width":1500
                 },
-                "on":"http://www.example.org/iiif/book1/canvas/p1"
+                "on": "http://www.example.org/iiif/book1/canvas/p1"
               }
             ],
             "otherContent": [
               {
-                "@id":"http://www.example.org/iiif/book1/list/p1",
-                "@type":"sc:AnnotationList"
+                "@id": "http://www.example.org/iiif/book1/list/p1",
+                "@type": "sc:AnnotationList"
               }
             ]
         },
           {
-            "@id":"http://www.example.org/iiif/book1/canvas/p2",
-            "@type":"sc:Canvas",
-            "label":"p. 2",
+            "@id": "http://www.example.org/iiif/book1/canvas/p2",
+            "@type": "sc:Canvas",
+            "label": "p. 2",
             "height":1000,
             "width":750,
             "images": [
               {
-                "@type":"oa:Annotation",
-                "motivation":"sc:painting",
+                "@type": "oa:Annotation",
+                "motivation": "sc:painting",
                 "resource":{
-                    "@id":"http://www.example.org/images/book1-page2/full/1500,2000/0/default.jpg",
-                    "@type":"dctypes:Image",
-                    "format":"image/jpeg",
+                    "@id": "http://www.example.org/images/book1-page2/full/1500,2000/0/default.jpg",
+                    "@type": "dctypes:Image",
+                    "format": "image/jpeg",
                     "height":2000,
                     "width":1500,
                     "service": {
                         "@context": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/context.json",
                         "@id": "http://www.example.org/images/book1-page2",
-                        "profile":"http://iiif.io/api/image/{{ site.image_api.latest.major }}/level1.json",
+                        "profile": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/level1.json",
                         "height":8000,
                         "width":6000,
-                        "tiles" : [{"width": 512, "scaleFactors": [1,2,4,8,16]}]
+                        "tiles": [{"width": 512, "scaleFactors": [1,2,4,8,16]}]
                     }
                 },
-                "on":"http://www.example.org/iiif/book1/canvas/p2"
+                "on": "http://www.example.org/iiif/book1/canvas/p2"
               }
             ],
             "otherContent": [
               {
-                "@id":"http://www.example.org/iiif/book1/list/p2",
-                "@type":"sc:AnnotationList"
+                "@id": "http://www.example.org/iiif/book1/list/p2",
+                "@type": "sc:AnnotationList"
               }
             ]
           },
           {
-            "@id":"http://www.example.org/iiif/book1/canvas/p3",
-            "@type":"sc:Canvas",
-            "label":"p. 3",
+            "@id": "http://www.example.org/iiif/book1/canvas/p3",
+            "@type": "sc:Canvas",
+            "label": "p. 3",
             "height":1000,
             "width":750,
             "images": [
               {
-                "@type":"oa:Annotation",
-                "motivation":"sc:painting",
+                "@type": "oa:Annotation",
+                "motivation": "sc:painting",
                 "resource":{
-                    "@id":"http://www.example.org/iiif/book1/res/page3.jpg",
-                    "@type":"dctypes:Image",
-                    "format":"image/jpeg",
+                    "@id": "http://www.example.org/iiif/book1/res/page3.jpg",
+                    "@type": "dctypes:Image",
+                    "format": "image/jpeg",
                     "service": {
                         "@context": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/context.json",
                         "@id": "http://www.example.org/images/book1-page3",
-                        "profile":"http://iiif.io/api/image/{{ site.image_api.latest.major }}/level1.json"
+                        "profile": "http://iiif.io/api/image/{{ site.image_api.latest.major }}/level1.json"
           },
                     "height":2000,
                     "width":1500
                 },
-                "on":"http://www.example.org/iiif/book1/canvas/p3"
+                "on": "http://www.example.org/iiif/book1/canvas/p3"
               }
             ],
             "otherContent": [
               {
-                "@id":"http://www.example.org/iiif/book1/list/p3",
-                "@type":"sc:AnnotationList"
+                "@id": "http://www.example.org/iiif/book1/list/p3",
+                "@type": "sc:AnnotationList"
               }
             ]
           }
@@ -1401,8 +1394,8 @@ URL: _http://www.example.org/iiif/book1/manifest_
   "structures": [
     {
       "@id": "http://www.example.org/iiif/book1/range/r1",
-        "@type":"sc:Range",
-        "label":"Introduction",
+        "@type": "sc:Range",
+        "label": "Introduction",
         "canvases": [
           "http://www.example.org/iiif/book1/canvas/p1",
           "http://www.example.org/iiif/book1/canvas/p2",
