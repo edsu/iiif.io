@@ -1478,11 +1478,12 @@ URL: _http://www.example.org/iiif/book1/manifest_
 | Other Content  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![optional][icon-opt]  | ![not allowed][icon-na] |
 {: .image-api-table}
 
-|                | Dereferenceable?       |         
+|                | @id is dereferenceable |         
 | -------------- | ---------------------- | 
 | Collection     | ![required][icon-req]  |
 | Manifest       | ![required][icon-req]  | 
-| Sequence       | ![optional][icon-opt]  | 
+| Sequence (first)   | ![optional][icon-opt]  |
+| Sequence (second+) | ![required][icon-req]  |
 | Canvas         | ![optional][icon-opt]  | 
 | Annotation     | ![optional][icon-opt]  |
 | AnnotationList | ![required][icon-req]  | 
