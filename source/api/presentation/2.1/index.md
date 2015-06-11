@@ -390,24 +390,28 @@ Typically the first request will be for a manifest resource and, for optimizatio
 
 #### 5.3.1. URI Representation
 
-Resource descriptions _SHOULD_ be embedded within higher-level descriptions, and _MAY_ also be available via separate requests from http(s) URIs linked in the responses. These URIs are in the `@id` property for the resource. Links to resources _MAY_ be either given as just the URI if there is no additional information associated with them, or as a JSON object with the `@id` property. Other URI schemes _MAY_ be used if the resource is not able to be retrieved via HTTP. The following two lines are equivalent, however the second object form should not be used unless there is additional information associated with the resource:
+Resource descriptions _SHOULD_ be embedded within higher-level descriptions, and _MAY_ also be available via separate requests from http(s) URIs linked in the responses. These URIs are in the `@id` property for the resource. Links to resources _MAY_ be either given as just the URI if there is no additional information associated with them, or as a JSON object with the `@id` property. Other URI schemes _MAY_ be used if the resource is not able to be retrieved via HTTP. The following two lines are equivalent, however the second object form _SHOULD NOT_ be used unless there is additional information associated with the resource:
 
 {% highlight json %}
 // Option A, plain string
 {"seeAlso" : "http://www.example.org/descriptions/book1.xml"}
 // Option B, object with @id property
-{"seeAlso" : {"@id":"http://www.example.org/descriptions/book1.xml"}}
+{"seeAlso" : {"@id":"http://www.example.org/descriptions/book1.xml",
+              "format": "text/xml"}}
 {% endhighlight %}
 
 #### 5.3.2. Repeated Properties
 
-Most of the properties _MAY_ be repeated. This is done by giving a list of values, rather than a single string.
+Most of the properties _MAY_ be repeated. This is done by giving a list of values, using either of the representations described above, rather than a single string.
 
 {% highlight json %}
 { 
   "seeAlso" : [
-    "http://www.example.org/descriptions/book1.xml", 
-    "http://www.example.org/descriptions/book1.csv" ]
+    "http://www.example.org/descriptions/book1.md", 
+    "http://www.example.org/descriptions/book1.csv",
+    {"@id": "http://www.example.org/descriptions/book1.xml",
+     "format": "text/xml"} 
+  ]
 }
 {% endhighlight %}
 
