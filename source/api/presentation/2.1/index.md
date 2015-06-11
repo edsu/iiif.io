@@ -390,7 +390,7 @@ Typically the first request will be for a manifest resource and, for optimizatio
 
 #### 5.3.1. URI Representation
 
-Resource descriptions _SHOULD_ be embedded within higher-level descriptions, and _MAY_ also be available via separate requests from http(s) URIs linked in the responses. These URIs are in the `@id` property for the resource. Links to resources _MAY_ be either given as just the URI if there is no additional information associated with them, or as a JSON object with the `@id` property. Other URI schemes _MAY_ be used if the resource is not able to be retrieved via HTTP. The following two lines are equivalent, however the second object form _SHOULD NOT_ be used unless there is additional information associated with the resource:
+Resource descriptions _SHOULD_ be embedded within higher-level descriptions, and _MAY_ also be available via separate requests from http(s) URIs linked in the responses. These URIs are in the `@id` property for the resource. Links to resources _MAY_ be either given as just the URI if there is no additional information associated with them, or as a JSON object with the `@id` property. Other URI schemes _MAY_ be used if the resource is not able to be retrieved via HTTP. Both options provide the same URI, however the second pattern associates additional information with the resource:
 
 {% highlight json %}
 // Option A, plain string
