@@ -218,12 +218,12 @@ width
     * All other resources _MUST NOT_ have a width.
 
 viewingDirection
-:   The direction that canvases of the resource should be presented when rendered for the user to navigate and/or read. Possible values are:
+:   The direction that a sequence of canvases _SHOULD_ be displayed to the user. Possible values are:
 
-    * "left-to-right": The object is read from left to right, and is the default if not specified.
-    * "right-to-left": The object is read from right to left.
-    * "top-to-bottom": The object is read from the top to the bottom.
-    * "bottom-to-top": The object is read from the bottom to the top.
+    * "left-to-right": The object is displayed from left to right, and is the default if not specified.
+    * "right-to-left": The object is displayed from right to left.
+    * "top-to-bottom": The object is displayed from the top to the bottom.
+    * "bottom-to-top": The object is displayed from the bottom to the top.
 
     Usage:
     {: .usage}
@@ -237,7 +237,7 @@ viewingHint
 
     * "individuals": Valid on manifest, sequence and range. The canvases referenced from the resource are all individual sheets, and _SHOULD NOT_ be presented in a page-turning interface. Examples include a set of views of a 3 dimensional object, or a set of the front sides of photographs in a collection.
     * "paged": Valid on manifest, sequence and range. The canvases represent pages in a bound volume, and _SHOULD_ be presented in a page-turning interface if one is available.  The first canvas is a single view (the first recto) and thus the second canvas represents the back of the object in the first canvas.
-    * "continuous": Valid on manifest, sequence and range.  Each canvas is a partial view of one side of a long scroll or roll and an appropriate rendering might display either the individual canvas or all of the canvases virtually stitched together in the display.  Note that this does not allow for both sides of the scroll to be included in the same manifest with this viewingHint.  To accomplish that, the manifest should be "individuals" and have two ranges, one for each side, which are "continuous".
+    * "continuous": Valid on manifest, sequence and range.  Each canvas is a partial view and an appropriate rendering might display either the canvases or all of the canvases virtually stitched together in the display.  Examples when this would be appropriate include long scrolls, rolls, or objects designed to be displayed adjacent to each other.  If this `viewingHint` is present, then the resource _MUST_ also have a `viewingDirection` which will determine the arrangement of the canvases. Note that this does not allow for both sides of a scroll to be included in the same manifest with this `viewingHint`.  To accomplish that, the manifest should be "individuals" and have two ranges, one for each side, which are "continuous".  
     * "non-paged": Canvases with this hint _MUST NOT_ be presented in a page turning interface, and _MUST_ be skipped over when determining the page sequence. This viewing hint _MUST_ be ignored if the current sequence or manifest does not have the 'paged' viewing hint.
     * "top": Only valid on a range. A range which has this `viewingHint` is the top-most node in a hierarchy of ranges that represents a structure to be rendered by the client to assist in navigation. For example, a table of contents within a paged object, major sections of a 3d object, the textual areas within a single scroll, and so forth.  Other ranges that are descendants of the "top" range are the entries to be rendered in the navigation structure.  There _MAY_ be multiple ranges marked with this hint. If so, the client _SHOULD_ display a choice of multiple structures to navigate through.
     * "facing-pages": Canvases with this hint, in a sequence or manifest with the "paged" viewing hint, _MUST_ be displayed by themselves, as they depict both parts of the opening.  If all of the canvases are like this, then page turning is not possible, so simply use "individuals" instead.
