@@ -18,13 +18,15 @@ __Latest Stable Version:__ [{{ site.presentation_api.latest.major }}.{{ site.pre
 
 __Previous Version:__ [2.0][prev-version]
 
-_Copyright © 2012-2014 Editors and contributors. Published by the IIIF under the [CC-BY][cc-by] license._
+_Copyright © 2012-2015 Editors and contributors. Published by the IIIF under the [CC-BY][cc-by] license._
 
 **Editors**
 
   * Michael Appleby, _Yale University_
+  * Tom Crane, _Digirati_
   * Robert Sanderson, _Stanford University_
   * Jon Stroop, _Princeton University_
+  * Simeon Warner, _Cornell University_
   {: .names}
 
 ## Abstract
