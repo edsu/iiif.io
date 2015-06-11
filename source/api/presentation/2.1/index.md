@@ -133,7 +133,7 @@ description
     * A sequence _MAY_ have one or more descriptions to further explain how it differs from other sequences.
     * A canvas _MAY_ have one or more descriptions to describe particular features of the view.
     * A content resource _MAY_ have one or more descriptions.
-    * A collection _SHOULD_ have a one or more descriptions.
+    * A collection _SHOULD_ have one or more descriptions.
 
 thumbnail
 :   A small image that depicts or pictorially represents the resource that the property is attached to, such as the title page, a significant image or rendering of a canvas with multiple content resources associated with it.  It is _RECOMMENDED_ that a [IIIF Image API][image-api] service be available for this image for manipulations such as resizing.
@@ -200,19 +200,22 @@ format
     _N.B._ This is different to the `formats` property in the [Image API][image-api], which gives the extension to use within that API.  It would be inappropriate to use in this case, as `format` can be used with any content resource, not just images.
 
 height
-:   The height of a canvas or image resource. For images, this is in pixels. No particular units are required for canvases, as the dimensions provide an aspect ratio for the resources to be located within rather than measuring any physical property of the object.
+:   The height of a canvas or image resource. For images, the value is in pixels. For canvases, the value does not have a unit. In combination with the width, it conveys an aspect ratio for the space in which content resources are located.
 
     Usage:
     {: .usage}
-    * A canvas _MUST_ have exactly one height, which does not have a unit type. It merely conveys, along with width, an aspect ratio.
+    * A canvas _MUST_ have exactly one height. 
     * Content resources _MAY_ have exactly one height, given in pixels, if appropriate.
     * All other resources _MUST NOT_ have a height.
 
 width
-:   The width of a canvas or image resource. For images, this is in pixels. No particular units are required for canvases.
+:   The width of a canvas or image resource. For images, the value is in pixels. For canvases, the value does not have a unit. In combination with the height, it conveys an aspect ratio for the space in which content resources are located.
+
     Usage:
     {: .usage}
-    * As for height above.
+    * A canvas _MUST_ have exactly one width. 
+    * Content resources _MAY_ have exactly one width, given in pixels, if appropriate.
+    * All other resources _MUST NOT_ have a width.
 
 viewingDirection
 :   The direction that canvases of the resource should be presented when rendered for the user to navigate and/or read. Possible values are:
@@ -225,7 +228,7 @@ viewingDirection
     Usage:
     {: .usage}
     * A manifest _MAY_ have exactly one viewing direction, and if so, it applies to all of its sequences unless the sequence specifies its own viewing direction.
-    * A sequence _MAY_ have exactly one viewing direction, and it MAY be different to that of the manifest.
+    * A sequence _MAY_ have exactly one viewing direction, and it _MAY_ be different to that of the manifest.
     * A collection, canvas or content resource _MUST NOT_ have a viewing direction.
     * A range or layer _MAY_ have exactly one viewing direction.
 
